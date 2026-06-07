@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Games - Daily Career Path Guessing Game</title>
+  <meta name="description" content="Play the daily sports career path trivia game. Guess the mystery player based on their chronological team transfer timeline. Fully autonomous daily puzzles.">
+  <link rel="canonical" href="https://sports-games.github.io/career.html" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-cricket" id="body-theme">
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+        Sports Games
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="career.html?sport=cricket" class="nav-link" id="nav-cricket">Cricket</a>
+        <a href="career.html?sport=football" class="nav-link" id="nav-football">Football</a>
+        <a href="career.html?sport=f1" class="nav-link" id="nav-f1">Formula 1</a>
+        <a href="career.html?sport=nba" class="nav-link" id="nav-nba">NBA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 id="game-title">Daily Career Path Game</h1>
+    <div class="subtitle">Guess the mystery athlete by their chronological team timeline. A new puzzle resets daily.</div>
+
+    <div class="game-play-box">
+      <!-- Clue Board -->
+      <div style="font-weight: 700; color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em;">
+        Player Career Timeline:
+      </div>
+      <div class="clue-box" id="career-clue-box">
+        <!-- Generated timeline string (e.g. Team A -> Team B -> Team C) -->
+        Loading timeline...
+      </div>
+
+      <div style="font-weight: 700; color: var(--primary-accent); margin-bottom: 0.5rem; text-align: center;">
+        Guesses Remaining: <span id="guesses-counter">6</span>
+      </div>
+      
+      <!-- Input Area -->
+      <div style="position: relative; margin-bottom: 1.5rem;">
+        <input type="text" class="search-input" id="search-input" placeholder="Search and select a player..." autocomplete="off">
+        <div class="autocomplete-results" id="autocomplete-list" style="position: absolute; width: 100%; z-index: 50;">
+          <!-- Autocomplete results load here -->
+        </div>
+      </div>
+
+      <!-- Guesses Log -->
+      <div id="guesses-log" style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <!-- Rendered guesses list -->
+      </div>
+    </div>
+
+    <!-- Stats & Streaks Dashboard -->
+    <div class="game-stats">
+      <div class="stat-box">
+        <div class="stat-value" id="stat-played">0</div>
+        <div class="stat-label">Played</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-streak">0</div>
+        <div class="stat-label">Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-max">0</div>
+        <div class="stat-label">Max Streak</div>
+      </div>
+    </div>
+
+    <!-- Share Results Container -->
+    <div class="share-container" id="share-container" style="display: none;">
+      <button class="share-btn" id="share-results-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Share Results
+      </button>
+    </div>
+
+    <!-- SEO Content Footer -->
+    <section class="seo-footer">
+      <h2>The Ultimate Guide to Daily Sports Career Path Trivia</h2>
+      <p>Welcome to Sports Games, the premier destination for daily sports career path guessing games. Modeled after the popular connection and lineage puzzles, our career path game challenges your sports recall. Whether you are a fan of Cricket, Football/Soccer, Formula 1, or NBA Basketball, our platform automatically generates a fresh daily mystery athlete based on their chronological team timeline. No manual database updates or active servers are required; all the data validation runs locally inside your browser for a secure, fast, and free experience.</p>
+      
+      <h3>How to Play the Career Path Game</h3>
+      <p>The objective is to guess the identity of a mystery athlete in 6 attempts or fewer. You are presented with a timeline of teams/clubs that the mystery player has represented throughout their professional career, listed in chronological order from their debut to their current team. For example, in Football, you might see a sequence like: `Santos -> Barcelona -> PSG -> Al Hilal` (the correct answer being "Neymar Jr"). In F1, you might see: `Toro Rosso -> Red Bull` (the correct answer being "Max Verstappen").</p>
+      <p>To make a guess, select the search box and type the name of the player you suspect. Once you submit a player, the game records your attempt. If you guess the target player correctly, the box turns green and you win! If your guess is incorrect, the guess turns red and is added to your guess history log, deducting one attempt from your guesses counter.</p>
+
+      <h3>Strategies for Timeline Connections</h3>
+      <p>Decoding a career timeline requires tracking player migration patterns across franchises. In modern sports, players change teams frequently, but their career path is unique. For example, in the NBA, player timelines containing both the Cavaliers and the Heat immediately narrow down the options to LeBron James or other teammates who shared that specific journey.</p>
+      <p>In Cricket, looking at player timelines that show transitions from early franchises like Deccan Chargers to Mumbai Indians points directly to Rohit Sharma. In F1, a driver who has hopped across Williams, Renault, and McLaren provides a clear clue for Carlos Sainz. Analyzing the start and end points of a career timeline is the most effective way to eliminate hundreds of players instantly.</p>
+
+      <h3>Frequently Asked Questions (FAQs)</h3>
+      <p><strong>Q: Where does the game database get player records?</strong><br>A: We compile our static player databases from open public sources, including Cricsheet (cricket), StatsBomb (football), and the Ergast F1 database (Formula 1). These lists contain the top 100+ most notable players for each sport, assuring smooth autocomplete validation.</p>
+      <p><strong>Q: Does my progress save if I close the tab?</strong><br>A: Yes. Your active guesses, stats, played games, and daily streaks are saved in the browser's local storage. You can leave the site and return later in the day without losing your progress.</p>
+      <p><strong>Q: How do I share my grid results?</strong><br>A: After finishing your game, click the "Share Results" button. This copies an emoji grid (e.g. 🟩🟥🟩...) to your clipboard, letting you share your score with friends on social media or chat groups without revealing the player names.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Sports Games. Made for sports fans. Hostable for free on GitHub Pages.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Games - Daily Mystery Player Guesser</title>
+  <meta name="description" content="Play the daily mystery sports player guessing game. Test your knowledge by deducing the athlete based on hot/cold hints. Fully autonomous daily puzzles.">
+  <link rel="canonical" href="https://sports-games.github.io/guesser.html" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-cricket" id="body-theme">
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+        Sports Games
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="guesser.html?sport=cricket" class="nav-link" id="nav-cricket">Cricket</a>
+        <a href="guesser.html?sport=football" class="nav-link" id="nav-football">Football</a>
+        <a href="guesser.html?sport=f1" class="nav-link" id="nav-f1">Formula 1</a>
+        <a href="guesser.html?sport=nba" class="nav-link" id="nav-nba">NBA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 id="game-title">Daily Player Guesser</h1>
+    <div class="subtitle">Deduce the mystery athlete using elimination clues. A new puzzle resets daily.</div>
+
+    <div class="game-play-box">
+      <div style="font-weight: 700; color: var(--primary-accent); margin-bottom: 0.5rem; text-align: center;">
+        Guesses Remaining: <span id="guesses-counter">6</span>
+      </div>
+      
+      <!-- Input Area -->
+      <div style="position: relative; margin-bottom: 1.5rem;">
+        <input type="text" class="search-input" id="search-input" placeholder="Search and select a player..." autocomplete="off">
+        <div class="autocomplete-results" id="autocomplete-list" style="position: absolute; width: 100%; z-index: 50;">
+          <!-- Autocomplete results load here -->
+        </div>
+      </div>
+
+      <!-- Guesses Log -->
+      <div id="guesses-log">
+        <!-- Rendered guesses comparison grids -->
+      </div>
+    </div>
+
+    <!-- Stats & Streaks Dashboard -->
+    <div class="game-stats">
+      <div class="stat-box">
+        <div class="stat-value" id="stat-played">0</div>
+        <div class="stat-label">Played</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-streak">0</div>
+        <div class="stat-label">Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-max">0</div>
+        <div class="stat-label">Max Streak</div>
+      </div>
+    </div>
+
+    <!-- Share Results Container -->
+    <div class="share-container" id="share-container" style="display: none;">
+      <button class="share-btn" id="share-results-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Share Results
+      </button>
+    </div>
+
+    <!-- SEO Content Footer -->
+    <section class="seo-footer">
+      <h2>The Ultimate Guide to Daily Player Guessing Games</h2>
+      <p>Welcome to Sports Games, the premier destination for daily mystery player guessing quizzes. Modeled after the viral Wordle format, our guessing games challenge your sports knowledge. Whether you are a fan of Cricket (Cricdle), Football/Soccer (Who Are Ya), Formula 1 (Stewardle), or NBA Basketball (Poeltl), our platform automatically generates a fresh daily mystery athlete every midnight. No manual database updates or active servers are needed; all the data validation runs locally inside your browser for a secure, fast, and free experience.</p>
+      
+      <h3>How to Play the Player Guesser</h3>
+      <p>The objective is to deduce a mystery athlete in 6 attempts or fewer. To start, select the search box and type the name of an athlete to make your first guess. Once you submit a player, the game outputs a row of comparisons. These compare your guess to the target mystery player based on specific physical, geographical, and statistical categories:</p>
+      <ul>
+        <li><strong>Green Block (Match):</strong> The category matches the target mystery player exactly (e.g. they play for the same team, share a position, or come from the same country).</li>
+        <li><strong>Red Block (No Match):</strong> The category does not match the target player.</li>
+        <li><strong>Yellow Block (Partial Match):</strong> There is a partial connection. For example, in NBA, if they share at least one team in their career but don't currently play for the same one. In Cricket, if their role (e.g. All-Rounder) is partially matched. Or if age/stat values are within a close range.</li>
+      </ul>
+      <p>Using these comparison feedbacks, you must refine your subsequent guesses. If you see that the mystery driver is from the United Kingdom, retired, and has over 10 Grand Prix wins, you can eliminate active drivers and focus only on historic British champions like Jenson Button or Damon Hill to solve the daily puzzle.</p>
+
+      <h3>Strategies for Deductions</h3>
+      <p>A good starting guess is key. Choose a balanced, middle-tier player who has played in the league/paddock for a moderate duration. A first guess like Virat Kohli (in cricket) or Lionel Messi (in soccer) will give you a clean baseline because they have played for many teams and have prominent attributes. If the nationality, age, or teams return red, you can immediately eliminate large clusters of players.</p>
+      <p>Pay close attention to team histories. In sports like the NBA or Soccer, journeymen who have represented 6-7 teams (like Russell Westbrook or Zlatan Ibrahimovic) are incredibly useful first guesses because they intersect with multiple teams, increasing the chance of landing a green or yellow team match, which immediately helps you deduce the player's career path.</p>
+
+      <h3>Frequently Asked Questions (FAQs)</h3>
+      <p><strong>Q: Where does the game database get player records?</strong><br>A: We compile our static player databases from open public sources, including Cricsheet (cricket), StatsBomb (football), and the Ergast F1 database (Formula 1). These lists contain the top 100+ most notable players for each sport, assuring smooth autocomplete validation.</p>
+      <p><strong>Q: Does my progress save if I close the tab?</strong><br>A: Yes. Your active guesses, stats, played games, and daily streaks are saved in the browser's local storage. You can leave the site and return later in the day without losing your progress.</p>
+      <p><strong>Q: How do I share my guess results?</strong><br>A: After finishing your game, click the "Share Results" button. This copies an emoji grid (e.g. 🟩🟥🟩...) to your clipboard, letting you share your score with friends on social media or chat groups without revealing the player names.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Sports Games. Made for sports fans. Hostable for free on GitHub Pages.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

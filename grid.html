@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Games - Daily 3x3 Grid Puzzle</title>
+  <meta name="description" content="Play the daily 3x3 sports grid puzzle. Match players with intersecting team and statistical criteria. Fully autonomous daily grids.">
+  <link rel="canonical" href="https://sports-games.github.io/grid.html" />
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="theme-cricket" id="body-theme">
+
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+        Sports Games
+      </a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Dashboard</a>
+        <a href="grid.html?sport=cricket" class="nav-link" id="nav-cricket">Cricket</a>
+        <a href="grid.html?sport=football" class="nav-link" id="nav-football">Football</a>
+        <a href="grid.html?sport=f1" class="nav-link" id="nav-f1">Formula 1</a>
+        <a href="grid.html?sport=nba" class="nav-link" id="nav-nba">NBA</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 id="game-title">Daily Grid Game</h1>
+    <div class="subtitle">Match players with intersecting criteria. A new puzzle generates automatically every day.</div>
+
+    <div style="text-align: center; font-weight: 700; margin-bottom: 1rem; font-size: 1.1rem; color: var(--primary-accent);">
+      Guesses Left: <span id="guesses-counter">9</span>
+    </div>
+
+    <!-- 3x3 Daily Grid Layout -->
+    <div class="grid-container" id="grid-layout">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Stats & Streaks Dashboard -->
+    <div class="game-stats">
+      <div class="stat-box">
+        <div class="stat-value" id="stat-played">0</div>
+        <div class="stat-label">Played</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-streak">0</div>
+        <div class="stat-label">Streak</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value" id="stat-max">0</div>
+        <div class="stat-label">Max Streak</div>
+      </div>
+    </div>
+
+    <!-- Share Results Container -->
+    <div class="share-container" id="share-container" style="display: none;">
+      <button class="share-btn" id="share-results-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        Share Results
+      </button>
+    </div>
+
+    <!-- Interactive Search Modal -->
+    <div class="modal" id="guess-modal">
+      <div class="modal-content">
+        <button class="close-btn" id="close-modal-btn">&times;</button>
+        <h3 style="font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--primary-accent);">Select a Player</h3>
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Must match both: <strong id="row-crit-display"></strong> and <strong id="col-crit-display"></strong>
+        </p>
+        <input type="text" class="search-input" id="search-input" placeholder="Type name..." autocomplete="off">
+        <div class="autocomplete-results" id="autocomplete-list">
+          <!-- Autocomplete results load here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO Content Footer -->
+    <section class="seo-footer">
+      <h2>The Ultimate Guide to Daily Sports Grid Games</h2>
+      <p>Welcome to Sports Games, the premier destination for daily sports trivia grid challenges. Modeled after the viral Immaculate Grid format, our daily grid games allow you to test your knowledge of international players, franchises, achievements, and statistics. Whether you are a fan of Cricket, Football/Soccer, Formula 1, or NBA Basketball, our platform automatically generates a fresh, solvable puzzle every single day at midnight. No manual updates or complex database systems are required; everything runs seamlessly in your browser memory for a zero-cost hosting experience.</p>
+      
+      <h3>How to Play the Sports Grid</h3>
+      <p>The rules of the grid are simple. You are presented with a 3x3 grid consisting of 9 cells. The horizontal rows and vertical columns each represent a specific sport category. This can be a team or constructor (e.g. Real Madrid, RCB, Ferrari, Lakers), a country (e.g. Argentina, Australia, United Kingdom), or a specific statistic/achievement (e.g. World Cup Winner, World Champion, All-Star). Your goal is to select a grid cell and guess an athlete who qualifies for both intersecting criteria. For example, if the row is "Real Madrid" and the column is "Champions League Winner", guessing "Cristiano Ronaldo" or "Toni Kroos" would be correct.</p>
+      <p>A correct guess turns the cell green and locked with the player's name. An incorrect guess turns the cell red and counts as a failed attempt. You have exactly 9 total guesses to complete all 9 cells of the grid. This means to achieve a perfect 9/9 sheet, you cannot make a single mistake. Budgeting your guesses and planning ahead is critical to completing the daily grid successfully.</p>
+
+      <h3>Targeting Rarity Scores & Crossover Players</h3>
+      <p>Once you are comfortable completing the daily grid, you can start targeting a lower "Rarity Score." Every time a player is submitted by the global community, the portal tracks how popular that guess was. If you input "LeBron James" for a Lakers/Heat intersection, your rarity percentage for that cell might be very high (e.g., 85%) because he is the most obvious choice. However, if you recall an obscure bench player who played only a few games for both franchises, your cell percentage might be under 1%. The lower your total rarity score across all 9 cells, the more advanced your sports knowledge is considered.</p>
+      <p>Think of journeymen and crossover stars. In Football, players like Zlatan Ibrahimovic or Alexis Sanchez have played for multiple elite clubs, making them versatile answers. In Formula 1, drivers like Fernando Alonso or Sebastian Vettel have raced for various constructors. In Cricket, players like Glenn Maxwell or Yuvraj Singh have represented multiple IPL franchises. Remembering these players is key to achieving a low rarity rating.</p>
+
+      <h3>Frequently Asked Questions (FAQs)</h3>
+      <p><strong>Q: Where does the game database get player records?</strong><br>A: We compile our static player databases from open public sources, including Cricsheet (cricket), StatsBomb (football), and the Ergast F1 database (Formula 1). These lists contain the top 100+ most notable players for each sport, assuring smooth autocomplete validation.</p>
+      <p><strong>Q: Does my progress save if I close the tab?</strong><br>A: Yes. Your active guesses, stats, played games, and daily streaks are saved in the browser's local storage. You can leave the site and return later in the day without losing your progress.</p>
+      <p><strong>Q: How do I share my grid results?</strong><br>A: After finishing your game, click the "Share Results" button. This copies an emoji grid (e.g. 🟩🟥🟩...) to your clipboard, letting you share your score with friends on social media or chat groups without revealing the player names.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Sports Games. Made for sports fans. Hostable for free on GitHub Pages.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
